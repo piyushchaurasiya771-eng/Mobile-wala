@@ -82,6 +82,63 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 @media(max-width:900px){.calc-grid{grid-template-columns:1fr}.instagram-grid{grid-template-columns:repeat(2,1fr)}.admin-grid{grid-template-columns:1fr}.admin-side{display:flex;overflow:auto;gap:5px;border-right:0;border-bottom:1px solid var(--line)}.admin-side div{white-space:nowrap}.admin-stats{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.instagram-grid{gap:7px}.admin-main{padding:14px;overflow-x:auto}.admin-head{display:block}.admin-head .btn{margin-top:10px}.admin-stats{grid-template-columns:1fr 1fr}.inventory{min-width:550px}}
 
+
+/* V3 UX + smoothness */
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{overflow-x:hidden}
+.nav{transition:background .3s ease,box-shadow .3s ease}
+.nav.scrolled{background:rgba(5,5,5,.94);box-shadow:0 10px 35px rgba(0,0,0,.3)}
+@keyframes floatPhone{0%,100%{transform:translate3d(0,0,0) rotate(7deg)}50%{transform:translate3d(0,-12px,0) rotate(5deg)}}
+.phone{animation:floatPhone 6s ease-in-out infinite}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.25,1)}
+.reveal.visible{opacity:1;transform:none}
+.modal-card{max-height:90vh;overflow:auto;overscroll-behavior:contain}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:900px){
+.navlinks{display:flex;position:absolute;top:65px;left:11px;right:11px;max-height:0;overflow:hidden;opacity:0;flex-direction:column;gap:0;background:rgba(12,12,15,.98);border:1px solid var(--line);border-radius:18px;padding:0 14px;transition:max-height .25s ease,opacity .25s ease,padding .25s ease}
+.navlinks.open{max-height:360px;opacity:1;padding:8px 14px}
+.navlinks a{padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.06)}
+.navlinks a:last-child{border-bottom:0}
+}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc{padding:28px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(145deg,#111114,#09090b);box-shadow:0 25px 70px rgba(0,0,0,.25)}
+.range-row{margin:17px 0}
+.range-row label{display:flex;justify-content:space-between;color:#aaa;font-size:12px}
+.range-row b{color:#fff}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.result{margin-top:18px;padding:18px;border-radius:16px;background:#151518;border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.result b{font-size:23px}
+.product-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.product-meta span{font-size:10px;color:#aaa;border:1px solid var(--line);padding:4px 7px;border-radius:7px}
+.instagram-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.insta-card{aspect-ratio:1;border-radius:18px;overflow:hidden;position:relative;border:1px solid var(--line)}
+.insta-card div{position:absolute;inset:0;padding:15px;display:flex;align-items:end;background:linear-gradient(transparent 30%,rgba(0,0,0,.85));font-size:12px}
+.insta-card:nth-child(1){background:radial-gradient(circle at 30% 20%,#f6d36b,#8d45ff 40%,#08080a 75%)}
+.insta-card:nth-child(2){background:radial-gradient(circle at 70% 25%,#6ee7ff,#222 45%,#08080a 80%)}
+.insta-card:nth-child(3){background:radial-gradient(circle at 40% 30%,#ff6b81,#252525 48%,#08080a 80%)}
+.insta-card:nth-child(4){background:radial-gradient(circle at 60% 35%,#d7ff3f,#1e2b22 40%,#08080a 80%)}
+.admin{border:1px solid var(--line);border-radius:28px;background:#09090b;overflow:hidden}
+.admin-head{padding:25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.admin-grid{display:grid;grid-template-columns:220px 1fr}
+.admin-side{padding:20px;border-right:1px solid var(--line);background:#0c0c0f}
+.admin-side div{padding:11px 12px;border-radius:10px;color:#888;font-size:13px;margin-bottom:4px}
+.admin-side div:first-child{background:#18181c;color:#fff}
+.admin-main{padding:24px}
+.admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.admin-stat{padding:17px;border:1px solid var(--line);border-radius:15px}
+.admin-stat small{color:#777}.admin-stat b{display:block;font-size:24px;margin-top:5px}
+.inventory{width:100%;border-collapse:collapse;font-size:12px}
+.inventory th,.inventory td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line)}
+.inventory th{color:#777}
+.status{padding:4px 7px;border-radius:999px;background:rgba(215,255,63,.1);color:var(--accent);font-size:10px}
+.pwa-banner{position:fixed;left:50%;bottom:18px;transform:translate(-50%,140px);z-index:80;width:min(480px,calc(100% - 24px));background:#151518;border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:13px;display:flex;align-items:center;gap:12px;box-shadow:0 25px 70px rgba(0,0,0,.45);transition:.35s}
+.pwa-banner.show{transform:translate(-50%,0)}
+.pwa-icon{width:40px;height:40px;border-radius:11px;background:var(--accent);color:#000;display:grid;place-items:center;font-weight:900}
+.pwa-banner small{color:#888;display:block}.pwa-banner .install{margin-left:auto}
+.searchbox{display:flex;gap:8px;margin-bottom:18px}.searchbox input{flex:1;background:#0c0c0f;border:1px solid var(--line);border-radius:12px;padding:12px;color:#fff;outline:none}
+@media(max-width:900px){.calc-grid{grid-template-columns:1fr}.instagram-grid{grid-template-columns:repeat(2,1fr)}.admin-grid{grid-template-columns:1fr}.admin-side{display:flex;overflow:auto;gap:5px;border-right:0;border-bottom:1px solid var(--line)}.admin-side div{white-space:nowrap}.admin-stats{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.instagram-grid{gap:7px}.admin-main{padding:14px;overflow-x:auto}.inventory{min-width:540px}.admin-head{display:block}.admin-head .btn{margin-top:10px}}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobilePhoneStore","name":"Mobile Wala","telephone":"+91-9935010101","address":{"@type":"PostalAddress","streetAddress":"Shop No. 5, Near Chawla Market, Govind Nagar","addressLocality":"Kanpur","addressRegion":"Uttar Pradesh","postalCode":"208027","addressCountry":"IN"},"areaServed":"Kanpur"}</script>
 </head>
@@ -89,8 +146,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 <nav class="nav">
  <div class="container nav-inner">
   <a class="logo" href="#home">MOBILE<span>WALA</span><sup>®</sup></a>
-  <div class="navlinks"><a href="#phones">Phones</a><a href="#deals">Deals</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#calculators">Tools</a><a href="#visit">Visit Us</a></div>
-  <div class="nav-actions"><a class="btn btn-primary" href="tel:+919935010101">Call Store</a><button class="menu" onclick="document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex'">☰</button></div>
+  <div class="navlinks"><a href="#phones">Phones</a><a href="#deals">Deals</a><a href="#services">Services</a><a href="#reviews">Reviews</a><a href="#calculators">Tools</a><a href="#visit">Visit</a></div>
+  <div class="nav-actions"><a class="btn btn-primary" href="tel:+919935010101">Call Store</a><button class="menu" aria-label="Open menu" onclick="toggleMenu()">☰</button></div>
  </div>
 </nav>
 
@@ -145,19 +202,26 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 </section>
 
 
-<section class="section container" id="calculators"><div class="section-head"><div><div class="section-kicker">Smart shopping tools</div><h2>Know your number.</h2></div><p>Interactive tools that turn a normal catalogue into a conversion-focused store website.</p></div>
-<div class="calc-grid">
-<div class="calc"><div class="section-kicker">EMI calculator</div><h3>Plan your purchase.</h3><p>Adjust phone price, down payment and tenure.</p>
-<div class="range-row"><label>Phone price <b id="priceVal">₹50,000</b></label><input id="phonePrice" type="range" min="10000" max="200000" step="5000" value="50000" oninput="calcEMI()"></div>
-<div class="range-row"><label>Down payment <b id="downVal">₹10,000</b></label><input id="downPay" type="range" min="0" max="100000" step="5000" value="10000" oninput="calcEMI()"></div>
-<div class="range-row"><label>Tenure <b id="tenureVal">12 months</b></label><input id="tenure" type="range" min="3" max="36" step="3" value="12" oninput="calcEMI()"></div>
-<div class="result"><span>Estimated monthly EMI</span><b id="emiVal">₹3,750</b></div></div>
-<div class="calc"><div class="section-kicker">Exchange calculator</div><h3>Upgrade smarter.</h3><p>Demo valuation based on device condition. Final value is decided in store.</p>
-<div class="range-row"><label>Old phone value <b id="oldVal">₹20,000</b></label><input id="oldPhone" type="range" min="2000" max="80000" step="1000" value="20000" oninput="calcExchange()"></div>
-<div class="range-row"><label>Condition <b id="condVal">Good</b></label><input id="condition" type="range" min="1" max="3" step="1" value="2" oninput="calcExchange()"></div>
-<div class="result"><span>Estimated exchange credit</span><b id="exchangeVal">₹20,000</b></div>
-<button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:15px" onclick="openEnquiry('Exchange Valuation')">Get Final Exchange Quote</button></div></div></section>
 
+<section class="section container" id="calculators">
+<div class="section-head"><div><div class="section-kicker">Smart shopping tools</div><h2>Calculate before you buy.</h2></div><p>Demo estimates only. Final EMI, interest, eligibility and exchange value are confirmed by the store or finance partner.</p></div>
+<div class="calc-grid">
+<div class="calc reveal"><div class="section-kicker">EMI calculator</div><h3>Reducing-balance EMI.</h3><p>Uses principal, annual interest rate and tenure.</p>
+<div class="range-row"><label>Phone price <b id="priceVal">₹50,000</b></label><input id="phonePrice" type="range" min="5000" max="300000" step="1000" value="50000"></div>
+<div class="range-row"><label>Down payment <b id="downVal">₹10,000</b></label><input id="downPay" type="range" min="0" max="100000" step="1000" value="10000"></div>
+<div class="range-row"><label>Interest rate <b id="rateVal">12% p.a.</b></label><input id="interestRate" type="range" min="0" max="30" step=".5" value="12"></div>
+<div class="range-row"><label>Tenure <b id="tenureVal">12 months</b></label><input id="tenure" type="range" min="3" max="60" step="3" value="12"></div>
+<div class="result"><span>Monthly EMI</span><b id="emiVal">₹3,553</b></div>
+<div class="product-meta"><span>Principal <b id="loanVal">₹40,000</b></span><span>Interest <b id="interestTotal">₹2,638</b></span><span>Total <b id="totalPay">₹42,638</b></span></div>
+</div>
+<div class="calc reveal"><div class="section-kicker">Exchange calculator</div><h3>Estimate your upgrade credit.</h3><p>Use your old phone's expected market value, condition and age.</p>
+<div class="range-row"><label>Market value <b id="oldVal">₹20,000</b></label><input id="oldPhone" type="range" min="1000" max="150000" step="500" value="20000"></div>
+<div class="range-row"><label>Condition <b id="condVal">Good</b></label><input id="condition" type="range" min="1" max="4" step="1" value="3"></div>
+<div class="range-row"><label>Phone age <b id="ageVal">1 year</b></label><input id="phoneAge" type="range" min="0" max="5" step="1" value="1"></div>
+<div class="result"><span>Estimated exchange credit</span><b id="exchangeVal">₹15,510</b></div>
+<div class="product-meta"><span id="exchangeNote">Good · 1 year</span></div>
+<button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:15px" onclick="openEnquiry('Exchange Valuation')">Get Final Exchange Quote</button>
+</div></div></section>
 <section class="section container" id="instagram"><div class="section-head"><div><div class="section-kicker">Social proof</div><h2>From the store.</h2></div><a class="btn btn-ghost" href="#" onclick="alert('Replace with the verified Instagram profile before launch.')">Follow Instagram ↗</a></div>
 <div class="instagram-grid"><div class="insta-card"><div>Latest flagship arrival · #MobileWala</div></div><div class="insta-card"><div>Premium unboxing · #GovindNagar</div></div><div class="insta-card"><div>Weekend deal · #Kanpur</div></div><div class="insta-card"><div>New accessories · #MobileWala</div></div></div></section>
 
@@ -166,6 +230,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 <div class="admin-grid"><div class="admin-side"><div>Overview</div><div>Products</div><div>Inventory</div><div>Offers</div><div>Enquiries</div><div>Settings</div></div><div class="admin-main"><div class="admin-stats"><div class="admin-stat"><small>Products</small><b>48</b></div><div class="admin-stat"><small>Low stock</small><b>06</b></div><div class="admin-stat"><small>Enquiries today</small><b>17</b></div></div>
 <table class="inventory"><thead><tr><th>Product</th><th>Brand</th><th>Stock</th><th>Status</th></tr></thead><tbody><tr><td>iPhone Pro Max</td><td>Apple</td><td>4</td><td><span class="status">In stock</span></td></tr><tr><td>Galaxy S Ultra</td><td>Samsung</td><td>2</td><td><span class="status">Low stock</span></td></tr><tr><td>OnePlus Flagship</td><td>OnePlus</td><td>7</td><td><span class="status">In stock</span></td></tr></tbody></table></div></div></div></section>
 
+
+<section class="section container" id="upgrade"><div class="section-head"><div><div class="section-kicker">Next-level version</div><h2>Make it a business tool.</h2></div><p>These are the upgrades that will make the final website genuinely valuable to the shop owner.</p></div>
+<div class="feature-grid">
+<div class="feature"><div class="icon">⚡</div><h3>Live stock & pricing</h3><p>Owner changes products, prices and stock from the dashboard.</p></div>
+<div class="feature"><div class="icon">🎯</div><h3>Lead capture</h3><p>WhatsApp enquiries carry model, budget and exchange requirements.</p></div>
+<div class="feature"><div class="icon">📍</div><h3>Local SEO pages</h3><p>Target Govind Nagar, Kanpur and brand/category searches.</p></div>
+<div class="feature"><div class="icon">📈</div><h3>Analytics</h3><p>Track product views, calls, WhatsApp clicks and enquiries.</p></div>
+</div></section>
 <section class="section container" id="about">
  <div class="about">
   <div class="about-copy"><div class="section-kicker">About the store</div><h2>Trusted in Govind Nagar since 2005.</h2><p>Mobile Wala is listed as a multi-brand mobile store in Govind Nagar, Kanpur. Public listings mention smartphones, accessories, repair/support, exchange/finance facilities and a broad range of brands.</p><a class="btn btn-primary" href="#visit">Visit Mobile Wala ↗</a></div>
@@ -229,5 +301,56 @@ calcEMI();calcExchange();
 let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;setTimeout(()=>document.getElementById('pwaBanner').classList.add('show'),3500)});function installPWA(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.finally(()=>{deferredPrompt=null;hidePWA()})}else alert('Production version will include manifest + service worker for full installation.')}function hidePWA(){document.getElementById('pwaBanner').classList.remove('show')}
 
 </script>
+
+<script>
+function money(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+function calcEMI(){
+ const price=+document.getElementById('phonePrice').value;
+ const down=Math.min(+document.getElementById('downPay').value,price);
+ const annual=+document.getElementById('interestRate').value;
+ const months=+document.getElementById('tenure').value;
+ const principal=Math.max(price-down,0), r=annual/100/12;
+ const emi=principal===0?0:(r===0?principal/months:principal*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1));
+ const total=emi*months;
+ document.getElementById('priceVal').textContent=money(price);
+ document.getElementById('downVal').textContent=money(down);
+ document.getElementById('rateVal').textContent=annual.toFixed(annual%1?1:0)+'% p.a.';
+ document.getElementById('tenureVal').textContent=months+' months';
+ document.getElementById('emiVal').textContent=money(emi);
+ document.getElementById('loanVal').textContent=money(principal);
+ document.getElementById('interestTotal').textContent=money(Math.max(total-principal,0));
+ document.getElementById('totalPay').textContent=money(total);
+}
+function calcExchange(){
+ const market=+document.getElementById('oldPhone').value;
+ const c=+document.getElementById('condition').value;
+ const age=+document.getElementById('phoneAge').value;
+ const names=['Poor','Fair','Good','Excellent'];
+ const conditionFactor=[.50,.65,.82,.92][c-1];
+ const ageFactor=[1,.94,.84,.72,.60,.48][age];
+ const credit=market*conditionFactor*ageFactor;
+ document.getElementById('oldVal').textContent=money(market);
+ document.getElementById('condVal').textContent=names[c-1];
+ document.getElementById('ageVal').textContent=age===0?'Under 1 year':age+' year'+(age>1?'s':'');
+ document.getElementById('exchangeVal').textContent=money(credit);
+ document.getElementById('exchangeNote').textContent=names[c-1]+' · '+(age===0?'under 1 year':age+' year'+(age>1?'s':''));
+}
+['phonePrice','downPay','interestRate','tenure'].forEach(id=>document.getElementById(id).addEventListener('input',calcEMI));
+['oldPhone','condition','phoneAge'].forEach(id=>document.getElementById(id).addEventListener('input',calcExchange));
+calcEMI();calcExchange();
+
+function toggleMenu(){document.querySelector('.navlinks').classList.toggle('open')}
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.navlinks').classList.remove('open')));
+window.addEventListener('scroll',()=>document.querySelector('.nav').classList.toggle('scrolled',scrollY>20),{passive:true});
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.section,.section-head,.card,.feature,.review,.calc,.deal-main,.deal-side,.contact-box,.stat,.admin,.instagram-grid').forEach(e=>{e.classList.add('reveal');observer.observe(e)});
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+ const t=document.querySelector(a.getAttribute('href'));
+ if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+}));
+</script>
+
 </body>
 </html>
